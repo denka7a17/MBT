@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Body Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Add Workout</h2>
+        <form action="/add_workout" method="POST">
+            <input type="hidden" name="username" value="{{ user.username }}">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required><br>
+            <div class="scrollable-container" id="exercises">
+                <div class="exercise">
+                    <label for="exercise1">Exercise:</label>
+                    <input type="text" id="exercise1" name="exercise[]" required><br>
+                    <label for="kilograms1">Kilograms:</label>
+                    <input type="number" id="kilograms1" name="kilograms[]"><br>
+                    <label for="sets1">Sets:</label>
+                    <input type="number" id="sets1" name="sets[]"><br>
+                    <label for="reps1">Reps:</label>
+                    <input type="number" id="reps1" name="reps[]"><br>
+                </div>
+            </div>
+            <button type="button" onclick="addExercise()">Add Exercise</button><br>
+            <button type="submit">Add Workout</button>
+        </form>
+        <button onclick="window.location.href='/main?username={{ user.username }}'">Back to Dashboard</button>
+    </div>
+
+    <script>
+        let exerciseCount = 1;
+
+        function addExercise() {
+            exerciseCount++;
+            const exerciseDiv = document.createElement('div');
+            exerciseDiv.classList.add('exercise');
+            exerciseDiv.innerHTML = `
+                <label for="exercise${exerciseCount}">Exercise:</label>
+                <input type="text" id="exercise${exerciseCount}" name="exercise[]" required><br>
+                <label for="kilograms${exerciseCount}">Kilograms:</label>
+                <input type="number" id="kilograms${exerciseCount}" name="kilograms[]"><br>
+                <label for="sets${exerciseCount}">Sets:</label>
+                <input type="number" id="sets${exerciseCount}" name="sets[]"><br>
+                <label for="reps${exerciseCount}">Reps:</label>
+                <input type="number" id="reps${exerciseCount}" name="reps[]"><br>
+            `;
+            document.getElementById('exercises').appendChild(exerciseDiv);
+        }
+    </script>
+</body>
+</html>
