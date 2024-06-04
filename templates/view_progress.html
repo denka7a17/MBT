@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Body Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>View Progress</h1>
+        {% for exercise in exercises %}
+        <button onclick="window.location.href='{{ url_for('exercise_progress', exercise=exercise) }}'">{{ exercise }}</button>
+        {% endfor %}
+        <button onclick="window.location.href='{{ url_for('main') }}'">Back to Dashboard</button>
+    </div>
+</body>
+</html>
