@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Body Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ user.username }}</h1>
+        <nav>
+            <button onclick="window.location.href='/add_workout?username={{ user.username }}'">Add Workout</button>
+            <button onclick="window.location.href='/history?username={{ user.username }}'">Activity History</button>
+            <button onclick="window.location.href='/view_progress?username={{ user.username }}'">View Progress</button>
+            <button onclick="window.location.href='/recommended_training?username={{ user.username }}'">Recommended Training</button>
+            <button onclick="window.location.href='/account?username={{ user.username }}'">Account Info</button>
+        </nav>
+    </div>
+</body>
+</html>

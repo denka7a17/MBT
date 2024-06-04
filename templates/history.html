@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Body Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Activity History</h2>
+        <div class="scrollable-container">
+            {% for date, activities in activities.items() %}
+            <div class="workout-box">
+                <h3>{{ date }}</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Exercise</th>
+                            <th>Kilograms</th>
+                            <th>Sets</th>
+                            <th>Reps</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for activity in activities %}
+                        <tr>
+                            <td>{{ activity.exercise }}</td>
+                            <td>{{ activity.kilograms }}</td>
+                            <td>{{ activity.sets }}</td>
+                            <td>{{ activity.reps }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endfor %}
+        </div>
+        <button onclick="window.location.href='/main?username={{ user.username }}'">Back to Dashboard</button>
+    </div>
+</body>
+</html>
